@@ -1,0 +1,997 @@
+
+/* ==========================================
+   HI — THE UNIVERSE BETWEEN US
+   MIZU.CSS · COSMIC CINEMATIC THEME
+========================================== */
+
+/* 1. WARNA UTAMA */
+:root {
+    --bg: #090712;
+    --text: #f8f2ff;
+    --muted: #c8bdd5;
+    --line: rgba(255, 255, 255, 0.17);
+
+    --fire: #ff9a65;
+    --water: #8fe7ff;
+    --leaf: #b5f2c5;
+    --mystery: #d7b8ff;
+    --romance: #ffc4df;
+}
+
+/* 2. RESET DASAR */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        sans-serif;
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid #fff0c9;
+    outline-offset: 4px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* 3. LAPISAN BINTANG */
+#stars {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+.noise {
+    position: fixed;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image:
+        radial-gradient(
+            rgba(255, 255, 255, 0.4) 0.5px,
+            transparent 0.5px
+        );
+    background-size: 5px 5px;
+}
+
+
+/* 4. NAVIGASI ATAS */
+.topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    padding: 22px clamp(18px, 5vw, 70px);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.wordmark {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    font-weight: 800;
+    text-align: left;
+}
+
+.wordmark span {
+    color: var(--fire);
+    font-size: 19px;
+    margin-right: 8px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #c8bad5;
+    font-size: 9px;
+    letter-spacing: 0.13em;
+}
+
+.signal-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #ffab83;
+    box-shadow: 0 0 12px #ff8c67;
+    animation: signalPulse 2s ease-in-out infinite;
+}
+
+
+/* 5. STRUKTUR BAB */
+main {
+    position: relative;
+    z-index: 2;
+}
+
+.chapter {
+    position: relative;
+    isolation: isolate;
+
+    min-height: 100vh;
+    min-height: 100svh;
+
+    padding:
+        110px
+        clamp(18px, 5vw, 76px)
+        82px;
+
+    overflow: hidden;
+}
+
+/* Setiap bab mengambil gambar PNG sendiri */
+.chapter::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transform: scale(1.02);
+    animation: slowZoom 26s ease-in-out infinite alternate;
+}
+
+/* Lapisan gelap agar tulisan tetap terbaca */
+.chapter::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7, 6, 16, 0.90),
+            rgba(7, 6, 16, 0.53) 62%,
+            rgba(7, 6, 16, 0.25)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(7, 6, 16, 0.72),
+            transparent 60%
+        );
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+}
+
+
+/* 6. PANEL KACA */
+.glass {
+    background: rgba(10, 8, 22, 0.61);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow: 0 24px 90px rgba(0, 0, 0, 0.23);
+}
+
+.hero-copy {
+    max-width: 750px;
+    padding: clamp(25px, 4vw, 55px);
+}
+
+.chapter-panel {
+    display: flex;
+    align-items: center;
+}
+
+.panel {
+    width: min(850px, 100%);
+    padding: clamp(25px, 5vw, 58px);
+    margin: 0 auto;
+}
+
+.panel.wide {
+    width: min(930px, 100%);
+}
+
+
+/* 7. TIPOGRAFI */
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #e5c7e8;
+    line-height: 1.8;
+}
+
+h1,
+h2 {
+    font-weight: 650;
+    letter-spacing: -0.045em;
+    line-height: 1.07;
+    margin: 12px 0 22px;
+}
+
+h1 {
+    font-size: clamp(42px, 7vw, 86px);
+}
+
+h2 {
+    font-size: clamp(36px, 5.5vw, 68px);
+}
+
+h1 em,
+h2 em {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    color: #ffd0bd;
+}
+
+.lead {
+    font-size: clamp(16px, 1.6vw, 20px);
+    line-height: 1.85;
+    color: #eee5f4;
+    max-width: 760px;
+}
+
+.body-copy {
+    line-height: 1.9;
+    color: #d7ccdf;
+    max-width: 760px;
+}
+
+.poem {
+    font-family: Georgia, serif;
+    color: #ead4e9;
+    font-size: 17px;
+    line-height: 1.9;
+
+    padding: 16px 20px;
+    border-left: 2px solid #f0a4c7;
+    background: rgba(255, 255, 255, 0.045);
+
+    margin: 25px 0;
+}
+
+.small-note,
+.bottom-note {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: #b5a7c4;
+}
+
+.small-note {
+    margin-top: 20px;
+}
+
+.bottom-note {
+    position: absolute;
+    bottom: 28px;
+    left: clamp(18px, 5vw, 76px);
+}
+
+
+/* 8. TOMBOL */
+.btn {
+    border: 1px solid transparent;
+    border-radius: 99px;
+    padding: 14px 22px;
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: linear-gradient(
+        110deg,
+        #ffc29a,
+        #ff9279
+    );
+
+    color: #24111b;
+    font-weight: 750;
+
+    box-shadow: 0 8px 32px rgba(255, 133, 104, 0.16);
+}
+
+.btn-primary:hover:not(:disabled) {
+    box-shadow: 0 10px 40px rgba(255, 133, 104, 0.35);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--line);
+    color: #f4eaf8;
+}
+
+
+/* 9. TIGA WILAYAH SETARA */
+.element-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 34px;
+    margin: 20px 0 8px;
+}
+
+.element-label span {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: #c8bdd5;
+}
+
+.element-label.fire {
+    color: var(--fire);
+}
+
+.element-label.water {
+    color: var(--water);
+}
+
+.element-label.leaf {
+    color: var(--leaf);
+}
+
+.element-label.mystery {
+    color: var(--mystery);
+}
+
+blockquote {
+    margin: 25px 0;
+    padding: 17px 21px;
+
+    border-left: 2px solid #efb4d9;
+    background: rgba(255, 255, 255, 0.045);
+
+    color: #f0e3f0;
+    line-height: 1.9;
+    font-family: Georgia, serif;
+    font-size: 17px;
+}
+
+
+/* 10. WARNA KHUSUS LATAR TIAP WILAYAH */
+#bab2::after {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(25, 7, 9, 0.88),
+            rgba(25, 7, 9, 0.53) 65%,
+            rgba(25, 7, 9, 0.25)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(7, 6, 16, 0.75),
+            transparent 60%
+        );
+}
+
+#bab3::after {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 13, 29, 0.88),
+            rgba(3, 13, 29, 0.53) 65%,
+            rgba(3, 13, 29, 0.25)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(7, 6, 16, 0.75),
+            transparent 60%
+        );
+}
+
+#bab4::after {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4, 20, 15, 0.88),
+            rgba(4, 20, 15, 0.53) 65%,
+            rgba(4, 20, 15, 0.25)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(7, 6, 16, 0.75),
+            transparent 60%
+        );
+}
+
+#bab5::after {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 8, 24, 0.90),
+            rgba(8, 8, 24, 0.56) 65%,
+            rgba(8, 8, 24, 0.25)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(7, 6, 16, 0.75),
+            transparent 60%
+        );
+}
+
+#bab6::after,
+#bab7::after {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(9, 7, 20, 0.91),
+            rgba(9, 7, 20, 0.58) 65%,
+            rgba(9, 7, 20, 0.30)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(7, 6, 16, 0.75),
+            transparent 60%
+        );
+}
+
+
+/* 11. PETUNJUK TERSEMBUNYI */
+.clue-list {
+    display: grid;
+    gap: 8px;
+    margin: 24px 0;
+}
+
+.clue {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 36px 1fr 20px;
+    align-items: center;
+    gap: 12px;
+
+    text-align: left;
+    padding: 16px;
+
+    border: 1px solid var(--line);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.035);
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.clue:hover,
+.clue.open {
+    border-color: var(--mystery);
+    background: rgba(215, 184, 255, 0.07);
+}
+
+.clue > span:first-child {
+    color: #cba5ef;
+    font-size: 11px;
+}
+
+.clue b,
+.clue small {
+    display: block;
+}
+
+.clue b {
+    font-size: 13px;
+}
+
+.clue small {
+    color: #bdb1c9;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.clue-answer {
+    margin: -4px 0 8px;
+    padding: 13px 18px;
+
+    color: #eadbfa;
+    line-height: 1.8;
+
+    background: rgba(160, 115, 206, 0.08);
+    border-radius: 0 0 12px 12px;
+
+    animation: revealClue 0.4s ease both;
+}
+
+
+/* 12. TEKA-TEKI TERAKHIR */
+.riddle {
+    border-top: 1px solid var(--line);
+    margin-top: 30px;
+    padding-top: 28px;
+}
+
+.riddle h3 {
+    font-size: clamp(22px, 3vw, 31px);
+    line-height: 1.35;
+    max-width: 730px;
+}
+
+.muted {
+    color: #c1b5cd;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.riddle form {
+    display: grid;
+    gap: 12px;
+    max-width: 560px;
+    margin-top: 24px;
+}
+
+.riddle label {
+    font-size: 13px;
+}
+
+.riddle input {
+    width: 100%;
+    padding: 16px;
+
+    color: #fff;
+    background: rgba(5, 4, 12, 0.75);
+
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.riddle input::placeholder {
+    color: #81768e;
+}
+
+.feedback {
+    color: #ffc4a2;
+    line-height: 1.8;
+    min-height: 1.4em;
+    margin-top: 16px;
+}
+
+
+/* 13. ENDING ULANG TAHUN */
+.ending::after {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(12, 7, 21, 0.78),
+            rgba(12, 7, 21, 0.36)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(12, 7, 21, 0.72),
+            transparent 70%
+        );
+}
+
+.ending-card {
+    max-width: 850px;
+    margin: 3vh auto 0;
+    padding: clamp(25px, 5vw, 58px);
+}
+
+.birthday-note {
+    margin-top: 28px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+    animation: rise 0.9s ease both;
+}
+
+.birthday-note h1 {
+    font-size: clamp(37px, 6vw, 65px);
+    color: #ffd8ec;
+}
+
+.birthday-note h1 span {
+    color: #ff9dc8;
+}
+
+.birthday-note p:not(.eyebrow):not(.signature) {
+    line-height: 1.9;
+    color: #f0e4f2;
+}
+
+.signature {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #d9b9e3;
+    margin-top: 22px;
+}
+
+
+/* 14. PORTAL PERPINDAHAN */
+#portal {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+
+    opacity: 0;
+    transform: scale(0.04);
+
+    background:
+        radial-gradient(
+            circle,
+            #fff4df 0%,
+            #ffad8c 7%,
+            rgba(151, 92, 196, 0.82) 24%,
+            rgba(10, 8, 22, 0.97) 58%,
+            #05040b 75%
+        );
+}
+
+#portal.open {
+    animation: portalOpen 1.35s ease-in-out forwards;
+}
+
+body.warp .chapter {
+    filter: blur(2px);
+}
+
+
+/* 15. FOOTER */
+.footer {
+    position: relative;
+    z-index: 5;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 18px clamp(18px, 5vw, 70px);
+
+    font-size: 9px;
+    letter-spacing: 0.13em;
+    color: #8d819e;
+
+    background: #080712;
+}
+
+
+/* 16. ANIMASI */
+@keyframes twinkle {
+    from {
+        transform: scale(0.55);
+        opacity: 0.2;
+    }
+
+    to {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+}
+
+@keyframes slowZoom {
+    from {
+        transform: scale(1.02);
+    }
+
+    to {
+        transform: scale(1.09);
+    }
+}
+
+@keyframes signalPulse {
+    0%, 100% {
+        opacity: 0.45;
+        box-shadow: 0 0 5px #ff8c67;
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 14px #ff8c67;
+    }
+}
+
+@keyframes portalOpen {
+    0% {
+        opacity: 0;
+        transform: scale(0.04);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(3);
+    }
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes revealClue {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* 17. TAMPILAN HP */
+@media (max-width: 700px) {
+    .topbar {
+        align-items: flex-start;
+    }
+
+    .wordmark {
+        max-width: 210px;
+        line-height: 1.7;
+    }
+
+    .top-right {
+        font-size: 8px;
+        white-space: nowrap;
+        gap: 6px;
+    }
+
+    .chapter {
+        padding-top: 105px;
+    }
+
+    .hero-copy {
+        padding: 26px 22px;
+    }
+
+    .panel {
+        padding: 25px 22px;
+    }
+
+    .footer {
+        flex-direction: column;
+    }
+
+    .bottom-note {
+        max-width: calc(100% - 36px);
+        line-height: 1.8;
+    }
+}
+
+@media (max-width: 380px) {
+    .topbar {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .top-right {
+        white-space: normal;
+        flex-wrap: wrap;
+    }
+
+    h1 {
+        font-size: 39px;
+    }
+
+    h2 {
+        font-size: 34px;
+    }
+
+    .btn {
+        max-width: 100%;
+        white-space: normal;
+    }
+}
+
+
+/* 18. AKSESIBILITAS */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========================
+   TAMPILAN KHUSUS HP
+   ========================= */
+
+@media screen and (max-width: 600px) {
+  html {
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    font-size: 14px;
+  }
+
+  /* Header */
+  header {
+    gap: 8px;
+    padding: 12px 14px;
+    flex-wrap: wrap;
+  }
+
+  header button,
+  header .button {
+    max-width: 100%;
+  }
+
+  /* Semua bab */
+  .chapter {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 90px 20px 40px;
+    box-sizing: border-box;
+  }
+
+  /* Panel cerita */
+  .chapter-panel {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 18px;
+    box-sizing: border-box;
+  }
+
+  /* Judul */
+  h1 {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    font-size: clamp(1.4rem, 7vw, 2.2rem);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+  }
+
+  /* Paragraf cerita */
+  p {
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+  }
+
+  /* Tombol nyaman disentuh */
+  button,
+  .lanjut {
+    min-height: 44px;
+    max-width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  /* Input teka-teki */
+  input,
+  textarea {
+    width: 100%;
+    max-width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  /* Gambar latar setiap bab */
+  .chapter::before {
+    background-position: center center;
+    background-size: cover;
+  }
+
+  /* Footer */
+  footer {
+    padding: 16px;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* HP kecil */
+@media screen and (max-width: 380px) {
+  .chapter {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .chapter-panel {
+    padding: 20px 14px;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 9vw, 2.6rem);
+  }
+
+  button,
+  .lanjut {
+    width: 100%;
+  }
+}
